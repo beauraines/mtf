@@ -1,0 +1,24 @@
+/bootstrap/compiled.php
+/vendor/*
+/packages/*
+composer.phar
+composer.lock
+.env.*.php
+.env.php
+.DS_Store
+config.codekit
+__MACOSX
+*~
+*.swp
+
+# except for
+!/vendor/autoload.php
+!/vendor/composer
+!/vendor/filp
+!/vendor/ircmaxell
+!/vendor/laravel
+!/vendor/monolog
+!/vendor/patchwork
+!/vendor/psr
+!/vendor/swiftmailer
+!/vendor/symfony
