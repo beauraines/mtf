@@ -11,3 +11,10 @@ $tweets = $connection->get("https://api.twitter.com/1.1/statuses/user_timeline.j
 return $tweets;
 }
 
+function verifyCredentials()
+{
+$connection = new TwitterOAuth(Auth::user()->consumer_key, Auth::user()->consumer_secret, Auth::user()->access_token, Auth::user()->access_secret_token);
+$tweets = $connection->get("account/verify_credentials");
+return json_encode($tweets);
+}
+

@@ -59,7 +59,17 @@ class FollowController extends \BaseController {
 		  // Final GOAL: Load into DB table, start job to follow from table
 		  // Near term goal: Follow ids from the array
 
-		//$list = array();
+		$list = array();
+
+		$toa = new TwitterOAuth(Auth::user()->consumer_key,
+					Auth::user()->consumer_secret,
+					Auth::user()->access_token,
+					Auth::user()->access_token_secret);
+
+		$friends = $toa->get('friends/ids', array('cursor' => -1));
+
+		//var_dump($friends);
+		//var_dump($toa);
 
 		foreach ($to_follow as $to_follow) {
 
@@ -72,7 +82,47 @@ class FollowController extends \BaseController {
 					    ]);
 			$follow->save();
 
-		}
+			if ( in_array($follow->twitter_id, $friends->ids))  {
+					$dt = new DateTime();
+					$follow->fill(['status_message' => 'You already follow ' . $to_follow['screenname'],
+					//$follow->fill(['status_message' => json_encode($ret),
+						      //'follow_date' => $dt->format('Y-m-d H:i:s'),
+						      ]);
+					$follow->save();
+			}
+
+			if (empty($friends->ids) or ! in_array($follow->twitter_id, $friends->ids))  {
+			//if ( TRUE )  { // For testing purposes
+
+				//$interval = rand(10,99) + 10;
+				$interval = 3;
+				sleep($interval);
+
+				$ret = $toa->post('friendships/create', array('user_id' => $follow->twitter_id));
+
+				//$list = array_add($list,$follow->twitter_id,$ret);
+				//var_dump($ret);
+
+				if (  empty($ret->errors) ) {
+					$dt = new DateTime();
+					$follow->fill(['status_message' => 'Followed okay',
+						      'follow_date' => $dt->format('Y-m-d H:i:s'),
+						      ]);
+					$follow->save();
+				}
+
+				if ( ! empty($ret->errors) ) {
+
+					 $dt = new DateTime();
+
+					$follow->fill(['status_message' => json_encode($ret->errors),
+						      'follow_date' => $dt->format('Y-m-d H:i:s'),
+						      ]);
+					$follow->save();
+				}
+
+			}
+	 	 }
 
 		//return $list;
 		//return $to_follow['1']['id'];

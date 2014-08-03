@@ -21,7 +21,7 @@ class Follow extends Eloquent  {
 
 	protected $fillable =array('twitter_id','screenname',
 				  'follow_date','unfollow_date',
-				  'filename','user_id');
+				  'filename','user_id','status_message');
 
 
 

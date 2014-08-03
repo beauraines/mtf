@@ -49,4 +49,8 @@ Route::get('/whoami', function()
 ;
 
 
+Route::get('/verifyCredentials', function() {
+$tweets = verifyCredentials();
+return $tweets;
+})->before('auth');
 

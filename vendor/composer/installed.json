@@ -1814,5 +1814,22 @@
             "import",
             "laravel"
         ]
+    },
+    {
+        "name": "kertz/twitteroauth",
+        "version": "master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "http://github.com/kertz/twitteroauth",
+            "reference": "master"
+        },
+        "type": "library",
+        "installation-source": "source",
+        "autoload": {
+            "classmap": [
+                "."
+            ]
+        }
     }
 ]

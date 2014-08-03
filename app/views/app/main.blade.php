@@ -16,13 +16,23 @@
                 <div>
                 {{ Form::label('followfile','Upload a file of Twitter User to follow  ') }}
                 {{ Form::file('followfile') }}
-                </div>
-
-
-                <div>
                 {{ Form::submit('Upload file') }}
                 </div>
         {{ Form::close() }}
+
+<p>
+{{ link_to_action('FollowController@index','Follows'); }}
+
+<p>
+<!--
+        {{ Form::open(['route' => 'follow.store',  'files' => true]) }}
+                <div>
+                {{ Form::label('followfile','Upload a file of Twitter User to follow  ') }}
+                {{ Form::file('followfile') }}
+                {{ Form::submit('Upload file') }}
+                </div>
+        {{ Form::close() }}
+-->
 
 <p>
 {{ link_to('/tweets','Your Tweets'); }}
