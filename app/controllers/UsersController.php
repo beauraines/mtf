@@ -19,7 +19,8 @@ class UsersController extends \BaseController {
 	 */
 	public function index()
 	{
-		return 'Shows all users. If it were written.';
+		//return 'Shows all users. If it were written.';
+		return User::all();
 	}
 
 

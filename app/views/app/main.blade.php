@@ -9,6 +9,21 @@
 {{ link_to_route('users.edit','Edit account info', [ Auth::user()->id ]); }}
 <p>
 {{ link_to_action('UsersController@index','Users'); }}
+<p>
+
+        {{ Form::open(['route' => 'follow.store',  'files' => true]) }}
+
+                <div>
+                {{ Form::label('followfile','Upload a file of Twitter User to follow  ') }}
+                {{ Form::file('followfile') }}
+                </div>
+
+
+                <div>
+                {{ Form::submit('Upload file') }}
+                </div>
+        {{ Form::close() }}
+
 
 
 
