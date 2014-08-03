@@ -5,7 +5,8 @@
 	"license": "MIT",
 	"require": {
 		"laravel/framework": "4.2.*",
-		"maatwebsite/excel": "1.*"
+		"maatwebsite/excel": "1.*" ,
+		"kertz/twitteroauth": "dev-master"
 	},
 	"autoload": {
 		"classmap": [
@@ -15,7 +16,10 @@
 			"app/database/migrations",
 			"app/database/seeds",
 			"app/tests/TestCase.php"
-		]
+		],
+        	"files": [
+            		"app/helpers.php"
+        ]
 	},
 	"scripts": {
 		"post-install-cmd": [
@@ -34,4 +38,23 @@
 		"preferred-install": "dist"
 	},
 	"minimum-stability": "stable"
+,
+
+"repositories": [
+       {
+            "type": "package",
+            "package": {
+                "name": "kertz/twitteroauth",
+                "version": "master",
+                "source": {
+                    "url": "http://github.com/kertz/twitteroauth",
+                    "type": "git",
+                    "reference": "master"
+                },
+                "autoload": {
+                    "classmap": ["."]
+                }
+            }
+        }
+    ]
 }

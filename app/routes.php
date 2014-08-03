@@ -28,3 +28,25 @@ Route::resource('follow','FollowController');
 Route::resource('users','UsersController');
 Route::resource('sessions','SessionsController');
 
+
+Route::get('/tweets', function() {
+	//return Config::get('twitter.consumer_key');
+
+//$connection = new \TwitterOAuth(Config::get('twitter.consumer_key'), Config::get('twitter.consumer_secret'), Config::get('twitter.access_token'), Config::get('twitter.access_secret_token'));
+//$tweets = $connection->get("https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=".Config::get('twitter.twitter_user')."&count=5");
+//return json_encode($tweets);
+$tweets = twitterFeed();
+return $tweets;
+
+	//return "Twitter consumer key";
+})->before('auth');
+
+
+Route::get('/whoami', function()
+{
+        return Auth::user();
+})->before('auth')
+;
+
+
+

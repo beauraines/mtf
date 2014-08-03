@@ -13,6 +13,12 @@
 		</div>
 
 		<div>
+		{{ Form::label('twitter_user','Twitter username: ') }}
+		{{ Form::text('twitter_user','@twittername') }}
+		{{ $errors->first('twitter_user','<span class=error>:message</span>') }}
+		</div>
+
+		<div>
 		{{ Form::label('email','Email Address: ') }}
 		{{ Form::email('email','somebody@somecompany.com') }}
 		{{ $errors->first('email','<span class=error>:message</span>') }}

@@ -24,7 +24,8 @@
                 </div>
         {{ Form::close() }}
 
-
+<p>
+{{ link_to('/tweets','Your Tweets'); }}
 
 
 <p>
