@@ -13,8 +13,8 @@
 		</div>
 
 		<div>
-		{{ Form::label('twitter_user','Twitter username: ') }}
-		{{ Form::text('twitter_user','@twittername') }}
+		{{ Form::label('twitter_user','Twitter username (without the @):  ') }}
+		{{ Form::text('twitter_user','twittername') }}
 		{{ $errors->first('twitter_user','<span class=error>:message</span>') }}
 		</div>
 

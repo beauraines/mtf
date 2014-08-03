@@ -22,7 +22,8 @@ class FollowController extends \BaseController {
 	 */
 	public function index()
 	{
-		$follows= Follow::all();
+		$follows= Follow::where('user_id',Auth::user()->id)->get();
+		//$follows= Follow::all();
 		return View::make('follow.index', [ 'follows'=>$follows]);
 		
 	}

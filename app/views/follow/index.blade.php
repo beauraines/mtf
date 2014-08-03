@@ -39,6 +39,7 @@
             <th>Status Message</th>
             <th>Status Code</th>
             <th>filename</th>
+            <th>MTF User</th>
             <th>Unfollow Date</th>
             <th>Created At</th>
             <th>Last Update</th>
@@ -54,6 +55,7 @@
             <td>{{$follow->status_message}}</td>
             <td>{{$follow->status_code}}</td>
             <td>{{$follow->filename}}</td>
+            <td>{{$follow->user_id}}</td>
             <td>{{$follow->unfollow_date}}</td>
             <td>{{$follow->created_at}}</td>
             <td>{{$follow->updated_at}}</td>
