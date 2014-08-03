@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'AddStatusCodeToFollowsTable' => $baseDir . '/app/database/migrations/2014_08_03_130325_add_status_code_to_follows_table.php',
     'AddStatusMessageToFollowsTable' => $baseDir . '/app/database/migrations/2014_08_02_192811_add_status_message_to_follows_table.php',
     'AddTwitterUsernameToUsers' => $baseDir . '/app/database/migrations/2014_08_02_185520_add_twitter_username_to_users.php',
     'BaseController' => $baseDir . '/app/controllers/BaseController.php',

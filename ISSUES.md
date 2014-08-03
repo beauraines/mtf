@@ -10,14 +10,16 @@ Issue and Features list
 4. *Issue* - Improved messaging on user creation.
 5. *Issue* - Setup model relationships
 6. *Issue* - Fix update validation rules
+7. *Feature* - Unfollow process
 
 Development Roadmap
 -------------------
 
 1. Load list into Follow table *DONE*
-2. Integrate TwitterOauth
-3. Follow whole list
-4. Implement job queues to process chunks of list
+2. Integrate TwitterOauth *DONE*
+3. Follow whole list *DONE*
+4. Validation rules and messaging
+5. Implement job queues to process chunks of list
 
 Sources
 -------

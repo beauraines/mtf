@@ -9,6 +9,11 @@ class FollowController extends \BaseController {
           $this->follow = $follow;
         }
 
+	public function getData() 
+	{
+		//
+	}
+
 
 	/**
 	 * Display a listing of the resource.
@@ -17,7 +22,8 @@ class FollowController extends \BaseController {
 	 */
 	public function index()
 	{
-		return Follow::all();
+		$follows= Follow::all();
+		return View::make('follow.index', [ 'follows'=>$follows]);
 		
 	}
 
@@ -71,6 +77,10 @@ class FollowController extends \BaseController {
 		//var_dump($friends);
 		//var_dump($toa);
 
+			$processed = 0;
+			$followed = 0;
+			$errored = 0;
+
 		foreach ($to_follow as $to_follow) {
 
 			//$list = array_add($list,$to_follow['id'],$to_follow['screenname']);
@@ -82,10 +92,12 @@ class FollowController extends \BaseController {
 					    ]);
 			$follow->save();
 
+			$processed = $processed + 1;
+
 			if ( in_array($follow->twitter_id, $friends->ids))  {
 					$dt = new DateTime();
 					$follow->fill(['status_message' => 'You already follow ' . $to_follow['screenname'],
-					//$follow->fill(['status_message' => json_encode($ret),
+						      'status_code' => 0 ,
 						      //'follow_date' => $dt->format('Y-m-d H:i:s'),
 						      ]);
 					$follow->save();
@@ -107,8 +119,10 @@ class FollowController extends \BaseController {
 					$dt = new DateTime();
 					$follow->fill(['status_message' => 'Followed okay',
 						      'follow_date' => $dt->format('Y-m-d H:i:s'),
+						      'status_code' => 1 ,
 						      ]);
 					$follow->save();
+					$followed = $followed + 1;
 				}
 
 				if ( ! empty($ret->errors) ) {
@@ -116,9 +130,11 @@ class FollowController extends \BaseController {
 					 $dt = new DateTime();
 
 					$follow->fill(['status_message' => json_encode($ret->errors),
+						      'status_code' =>  $ret->errors->code,
 						      'follow_date' => $dt->format('Y-m-d H:i:s'),
 						      ]);
 					$follow->save();
+					$errored = $errored + 1 ;
 				}
 
 			}
@@ -126,7 +142,11 @@ class FollowController extends \BaseController {
 
 		//return $list;
 		//return $to_follow['1']['id'];
-		return Follow::all();
+		//return Follow::all();
+		return array( 'processed' => $processed,
+			      'followed' => $followed,
+			      'errored' => $errored,
+			    );
 	}
 
 

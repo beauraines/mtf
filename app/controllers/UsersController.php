@@ -20,7 +20,9 @@ class UsersController extends \BaseController {
 	public function index()
 	{
 		//return 'Shows all users. If it were written.';
-		return User::all();
+		$users = User::all();
+		//return $users;
+		return View::make('user.index', [ 'users'=>$users]);
 	}
 
 

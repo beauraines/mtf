@@ -24,6 +24,9 @@ Route::get('u', function()
 Route::get('login','SessionsController@create');
 Route::get('logout','SessionsController@destroy');
 
+Route::get('/getfollowerdata','FollowController@getData');
+
+
 Route::resource('follow','FollowController');
 Route::resource('users','UsersController');
 Route::resource('sessions','SessionsController');
