@@ -1,9 +1,6 @@
 @extends('layouts.default')
 @section('content')
 
- {{ 'Welcome ' . Auth::user()->name; }}
-
-<p>
 {{ link_to_route('users.update','Display account info', [ Auth::user()->id ]); }}
 <p>
 {{ link_to_route('users.edit','Edit account info', [ Auth::user()->id ]); }}
@@ -17,6 +14,7 @@
                 {{ Form::label('followfile','Upload a file of Twitter User to follow  ') }}
                 {{ Form::file('followfile') }}
                 {{ Form::submit('Upload file') }}
+                {{ $errors->first('followfile','<span class=error>:message</span>') }}
                 </div>
         {{ Form::close() }}
 
@@ -38,8 +36,6 @@
 {{ link_to('/tweets','Your Tweets'); }}
 
 
-<p>
-{{ link_to('/logout','Logout'); }}
 
 <!--
 <p>

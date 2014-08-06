@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\MessageBag;
+
 class FollowController extends \BaseController {
 
         protected $follow;
@@ -51,22 +53,14 @@ class FollowController extends \BaseController {
 
 		if ( ! Input::hasFile('followfile') )  {
 
-		//Error message no file supplied.
-
+                   $errors = new MessageBag(['followfile' => ['No file supplied.']]);
+                   return Redirect::back()
+                                ->withErrors($errors);
 		}
 
-		// Read file into array
+		// Process file
 
 		$file = Input::file('followfile');
-
-		$to_follow = Excel::load($file, function($reader) {} )->toArray();
-
-
-		// Process the array
-		  // Final GOAL: Load into DB table, start job to follow from table
-		  // Near term goal: Follow ids from the array
-
-		$list = array();
 
 		$toa = new TwitterOAuth(Auth::user()->consumer_key,
 					Auth::user()->consumer_secret,
@@ -75,79 +69,12 @@ class FollowController extends \BaseController {
 
 		$friends = $toa->get('friends/ids', array('cursor' => -1));
 
-		//var_dump($friends);
-		//var_dump($toa);
+		$follows = $this->follow->followFromFile($file, $friends, $toa);
+		//$follows = $this->follow->addFromFile($file);
 
-			$processed = 0;
-			$followed = 0;
-			$errored = 0;
+		return $follows;
 
-		foreach ($to_follow as $to_follow) {
 
-			//$list = array_add($list,$to_follow['id'],$to_follow['screenname']);
-			$follow = new Follow;
-			$follow->fill(['twitter_id' => $to_follow['id'],
-					    'screenname' => $to_follow['screenname'],
-					    'filename' => $file->getClientOriginalName(),
-					    'user_id' => Auth::user()->id,
-					    ]);
-			$follow->save();
-
-			$processed = $processed + 1;
-
-			if ( in_array($follow->twitter_id, $friends->ids))  {
-					$dt = new DateTime();
-					$follow->fill(['status_message' => 'You already follow ' . $to_follow['screenname'],
-						      'status_code' => 0 ,
-						      //'follow_date' => $dt->format('Y-m-d H:i:s'),
-						      ]);
-					$follow->save();
-			}
-
-			if (empty($friends->ids) or ! in_array($follow->twitter_id, $friends->ids))  {
-			//if ( TRUE )  { // For testing purposes
-
-				//$interval = rand(10,99) + 10;
-				$interval = 3;
-				sleep($interval);
-
-				$ret = $toa->post('friendships/create', array('user_id' => $follow->twitter_id));
-
-				//$list = array_add($list,$follow->twitter_id,$ret);
-				//var_dump($ret);
-
-				if (  empty($ret->errors) ) {
-					$dt = new DateTime();
-					$follow->fill(['status_message' => 'Followed okay',
-						      'follow_date' => $dt->format('Y-m-d H:i:s'),
-						      'status_code' => 1 ,
-						      ]);
-					$follow->save();
-					$followed = $followed + 1;
-				}
-
-				if ( ! empty($ret->errors) ) {
-
-					 $dt = new DateTime();
-
-					$follow->fill(['status_message' => json_encode($ret->errors),
-						      'status_code' =>  $ret->errors->code,
-						      'follow_date' => $dt->format('Y-m-d H:i:s'),
-						      ]);
-					$follow->save();
-					$errored = $errored + 1 ;
-				}
-
-			}
-	 	 }
-
-		//return $list;
-		//return $to_follow['1']['id'];
-		//return Follow::all();
-		return array( 'processed' => $processed,
-			      'followed' => $followed,
-			      'errored' => $errored,
-			    );
 	}
 
 

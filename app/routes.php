@@ -16,20 +16,34 @@ Route::get('/', function()
 	return View::make('hello');
 });
 
+Route::get('login','SessionsController@create');
+Route::get('logout','SessionsController@destroy');
+Route::resource('sessions','SessionsController');
+
+   Route::resource('users','UsersController'
+		  ,['only'=>['create','store']]	
+		  );
+
+// Requires authentication before routing
+Route::group(array('before'=>'auth'), function() {
+
 Route::get('u', function()
 {
 	return View::make('app.main');
 });
 
-Route::get('login','SessionsController@create');
-Route::get('logout','SessionsController@destroy');
-
-Route::get('/getfollowerdata','FollowController@getData');
+   Route::get('/getfollowerdata','FollowController@getData');
 
 
-Route::resource('follow','FollowController');
-Route::resource('users','UsersController');
-Route::resource('sessions','SessionsController');
+   Route::resource('follow','FollowController');
+
+   Route::resource('users','UsersController',
+		  ['except'=>['create','store']]	
+//		  ['only'=>['index','show','destroy','edit']]	
+		  );
+
+});
+
 
 
 Route::get('/tweets', function() {
@@ -39,9 +53,9 @@ Route::get('/tweets', function() {
 //$tweets = $connection->get("https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=".Config::get('twitter.twitter_user')."&count=5");
 //return json_encode($tweets);
 $tweets = twitterFeed();
-return $tweets;
+//return $tweets;
+	return View::make('app.tweets',['tweets' => $tweets]);
 
-	//return "Twitter consumer key";
 })->before('auth');
 
 
