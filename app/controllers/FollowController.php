@@ -24,9 +24,29 @@ class FollowController extends \BaseController {
 	 */
 	public function index()
 	{
+		
+		
 		$follows= Follow::where('user_id',Auth::user()->id)->get();
-		//$follows= Follow::all();
 		return View::make('follow.index', [ 'follows'=>$follows]);
+		
+		
+		
+		/*
+		// For testing followFromFollows function
+		$follows = new Follow;
+		$to_follow = $follows->followFromFollow(1,0,1);
+		return $to_follow;
+		*/
+
+		
+		/*
+		// For testing status function
+		$follows = new Follow;
+		return  $follows->status(Auth::user()->id);
+		*/
+		
+
+
 		
 	}
 
@@ -69,9 +89,13 @@ class FollowController extends \BaseController {
 
 		$friends = $toa->get('friends/ids', array('cursor' => -1));
 
-		$follows = $this->follow->followFromFile($file, $friends, $toa);
-		//$follows = $this->follow->addFromFile($file);
+		//$follows = $this->follow->followFromFile($file, $friends, $toa);
+		$follows = $this->follow->addFromFile($file);
+		//Don't automatically start the follow process. 
+		//$follows = $this->follow->followFromFollow(NULL, $friends, $toa);
 
+
+		//What should this actually return?
 		return $follows;
 
 

@@ -29,7 +29,7 @@ Route::group(array('before'=>'auth'), function() {
 
 Route::get('u', function()
 {
-	return View::make('app.main');
+	return View::make('app.main',['status' => Follow::status(Auth::user()->id)]);
 });
 
    Route::get('/getfollowerdata','FollowController@getData');
@@ -58,6 +58,19 @@ $tweets = twitterFeed();
 
 })->before('auth');
 
+
+Route::get('/followfromfollow', function() {
+                $toa = new TwitterOAuth(Auth::user()->consumer_key,
+                                        Auth::user()->consumer_secret,
+                                        Auth::user()->access_token,
+                                        Auth::user()->access_token_secret);
+
+                $friends = $toa->get('friends/ids', array('cursor' => -1));
+
+                $follows = new Follow;
+		$follows = $follows->followFromFollow(NULL, $friends, $toa);
+		return $follows;
+})->before('auth');
 
 Route::get('/whoami', function()
 {

@@ -1,6 +1,8 @@
 @extends('layouts.default')
 @section('content')
 
+<div style="float:left;">
+
 {{ link_to_route('users.update','Display account info', [ Auth::user()->id ]); }}
 <p>
 {{ link_to_route('users.edit','Edit account info', [ Auth::user()->id ]); }}
@@ -20,6 +22,8 @@
 
 <p>
 {{ link_to_action('FollowController@index','Follows'); }}
+<p>
+{{ link_to('/followfromfollow','Follow another 1000 from to Follow'); }}
 
 <p>
 <!--
@@ -35,6 +39,29 @@
 <p>
 {{ link_to('/tweets','Your Tweets'); }}
 
+</div>
+
+<div style="width:200px;float:right;">
+<h2>Follow status</h2>
+<table id="status" class="table">
+<thead>
+<tr>
+	<td>Category</td>
+	<td>Count</td>
+</tr>
+</thead>
+@foreach ( $status as $status=>$value )
+<tr>
+	<td>{{ $status }}</td>
+	<td> {{$value}} </td>
+</tr>
+@endforeach
+</table>
+</div>
+
+
+
+
 
 
 <!--
@@ -44,8 +71,6 @@
 {{ Form::close() }}
 
 -->
-
-
 
 
 @stop

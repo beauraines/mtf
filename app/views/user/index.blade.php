@@ -46,9 +46,12 @@
             <td>{{$user->email}}</td>
             <td>{{ link_to("http://twitter.com/$user->twitter_user",$user->twitter_user) }}</td>
             <!--<td>{{$user->twitter_user}}</td>-->
+	    <!-- Display if keys set or not-->
         </tr>
 
         @endforeach
+
+		{{ link_to('/users/$user->id/edit','Edit settings') }}
                 
     </tbody>
 </table>

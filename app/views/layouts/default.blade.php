@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
         <!-- STYLES -->
-        <link rel='stylesheet' type='text/css' href='styles/stylesheet.css' /> 
+        <link rel='stylesheet' type='text/css' href='/styles/stylesheet.css' /> 
         </style>
 
         <!-- SCRIPTS -->
@@ -22,15 +22,74 @@
                 } );
         </script>
 
+<!-- Bootstrap -->
+
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
 </head>
 <body>
-<div>
+<div class="container-fluid" .border-top-radius(@radius) {
+  border-top-right-radius: @radius;
+   border-top-left-radius: @radius;
+}
+.border-right-radius(@radius) {
+  border-bottom-right-radius: @radius;
+     border-top-right-radius: @radius;
+}
+.border-bottom-radius(@radius) {
+  border-bottom-right-radius: @radius;
+   border-bottom-left-radius: @radius;
+}
+.border-left-radius(@radius) {
+  border-bottom-left-radius: @radius;
+     border-top-left-radius: @radius;
+}>
+<div style="float:left;">
+@if  ( Auth::check()  ) 
  {{ 'Welcome ' . Auth::user()->name; }}
-<p>
-{{ link_to('/u','Main Page'); }}
-<p>
-{{ link_to('/logout','Logout'); }}
+</div>
+<div style="float:right;">
+{{ link_to('/u','Main Page'); }} | {{ link_to('/logout','Logout'); }}
+</div>
 
+<hr>
+
+@else
+
+<div class="container-fluid" .border-top-radius(@radius) {
+  border-top-right-radius: @radius;
+   border-top-left-radius: @radius;
+}
+.border-right-radius(@radius) {
+  border-bottom-right-radius: @radius;
+     border-top-right-radius: @radius;
+}
+.border-bottom-radius(@radius) {
+  border-bottom-right-radius: @radius;
+   border-bottom-left-radius: @radius;
+}
+.border-left-radius(@radius) {
+  border-bottom-left-radius: @radius;
+     border-top-left-radius: @radius;
+}>
+<div style="float:left;font-size:130%;">
+<b>Manage Twitter Followers</b>
+</div>
+<div style="float:right;">
+</div>
+
+@endif
 </div>
 	@yield('content')
 

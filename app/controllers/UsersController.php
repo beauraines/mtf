@@ -78,7 +78,8 @@ class UsersController extends \BaseController {
 	{
 		//return 'Show user ' . $id . ' info.';
 		$user = Auth::user();
-		return $user;
+		//return $user;
+		return View::make('user.show', [ 'user'=>$user]);
 		
 	}
 
