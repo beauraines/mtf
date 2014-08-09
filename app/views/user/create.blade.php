@@ -27,7 +27,7 @@
 		<div>
 		{{ Form::label('password','Password: ') }}
 		{{ Form::password('password') }}
-		{{ $errors->first('password') }}
+		{{ $errors->first('password','<span class=error>:message</span>') }}
 		</div>
 		<div>
 		{{ Form::label('password_confirmation','Password Confirmation: ') }}
