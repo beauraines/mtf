@@ -39,22 +39,7 @@
 
 </head>
 <body>
-<div class="container-fluid" .border-top-radius(@radius) {
-  border-top-right-radius: @radius;
-   border-top-left-radius: @radius;
-}
-.border-right-radius(@radius) {
-  border-bottom-right-radius: @radius;
-     border-top-right-radius: @radius;
-}
-.border-bottom-radius(@radius) {
-  border-bottom-right-radius: @radius;
-   border-bottom-left-radius: @radius;
-}
-.border-left-radius(@radius) {
-  border-bottom-left-radius: @radius;
-     border-top-left-radius: @radius;
-}>
+<div class="container-fluid">
 <div style="float:left;">
 @if  ( Auth::check()  ) 
  {{ 'Welcome ' . Auth::user()->name; }}
@@ -67,22 +52,6 @@
 
 @else
 
-<div class="container-fluid" .border-top-radius(@radius) {
-  border-top-right-radius: @radius;
-   border-top-left-radius: @radius;
-}
-.border-right-radius(@radius) {
-  border-bottom-right-radius: @radius;
-     border-top-right-radius: @radius;
-}
-.border-bottom-radius(@radius) {
-  border-bottom-right-radius: @radius;
-   border-bottom-left-radius: @radius;
-}
-.border-left-radius(@radius) {
-  border-bottom-left-radius: @radius;
-     border-top-left-radius: @radius;
-}>
 <div style="float:left;font-size:130%;">
 <b>Manage Twitter Followers</b>
 </div>
