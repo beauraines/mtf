@@ -159,7 +159,8 @@ class Follow extends Eloquent  {
 				//$interval = 3;
 				sleep($interval);
 
-				$ret = $toa->post('friendships/create', array('user_id' => $follow->twitter_id));
+				//$ret = $toa->post('friendships/create', array('user_id' => $follow->twitter_id));
+				$ret = $toa->post('friendships/create', array('screen_name' => $follow->screenname));
 
 				//var_dump($ret);
 
@@ -245,7 +246,8 @@ class Follow extends Eloquent  {
 				//$interval = 3;
 				sleep($interval);
 
-				$ret = $toa->post('friendships/create', array('user_id' => $follow->twitter_id));
+				//$ret = $toa->post('friendships/create', array('user_id' => $follow->twitter_id));
+				$ret = $toa->post('friendships/create', array('screen_name' => $follow->screenname));
 
 				//var_dump($ret);
 
