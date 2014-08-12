@@ -113,6 +113,7 @@ class Follow extends Eloquent  {
 					->where('status_code','<>',0)  // Already follow
 					->where('status_code','<>',160) // Already requested to follow
 					->where('status_code','<>',108) // User not found
+					->where('status_code','<>',162) // Blocked from following this user 
 					->orWhere('status_code',NULL) // Not followed yet
 					->take(1000) // only get 1000 at a time
 					->get();

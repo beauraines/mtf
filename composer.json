@@ -6,7 +6,8 @@
 	"require": {
 		"laravel/framework": "4.2.*",
 		"maatwebsite/excel": "1.*" ,
-		"kertz/twitteroauth": "dev-master"
+		"kertz/twitteroauth": "dev-master",
+		"doctrine/dbal": "~2.3"
 	},
 	"autoload": {
 		"classmap": [
