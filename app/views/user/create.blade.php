@@ -8,26 +8,26 @@
 		{{ Form::label('name','Username: ') }}
 		{{ Form::text('name','First name') }}
 
-		{{ $errors->first('name','<span class=error>:message</span>') }}
+		{{ $errors->first('name','<span class=text-danger>:message</span>') }}
 
 		</div>
 
 		<div>
 		{{ Form::label('twitter_user','Twitter username (without the @):  ') }}
 		{{ Form::text('twitter_user','twittername') }}
-		{{ $errors->first('twitter_user','<span class=error>:message</span>') }}
+		{{ $errors->first('twitter_user','<span class=text-danger>:message</span>') }}
 		</div>
 
 		<div>
 		{{ Form::label('email','Email Address: ') }}
 		{{ Form::email('email','somebody@somecompany.com') }}
-		{{ $errors->first('email','<span class=error>:message</span>') }}
+		{{ $errors->first('email','<span class=text-danger>:message</span>') }}
 		</div>
 
 		<div>
 		{{ Form::label('password','Password: ') }}
 		{{ Form::password('password') }}
-		{{ $errors->first('password') }}
+		{{ $errors->first('password','<span class=text-danger>:message</span>') }}
 		</div>
 		<div>
 		{{ Form::label('password_confirmation','Password Confirmation: ') }}

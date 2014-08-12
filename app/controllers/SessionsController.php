@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\MessageBag;
+
 class SessionsController extends \BaseController {
 
 	/**
@@ -36,7 +38,10 @@ class SessionsController extends \BaseController {
           {
              return Redirect::intended('/u');
           }
-          return Redirect::back()->withInput();
+	 $errors = new MessageBag(['errors' => ['Username/password not found.']]);
+
+	  return Redirect::back()->withInput()->withErrors($errors);
+
 	}
 
 

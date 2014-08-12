@@ -18,7 +18,7 @@ Development Roadmap
 1. Load list into Follow table *DONE*
 2. Integrate TwitterOauth *DONE*
 3. Follow whole list *DONE*
-4. Validation rules and messaging
+4. Validation rules and messaging *DONE*
 5. Implement job queues to process chunks of list
 
 Sources
