@@ -8,7 +8,7 @@
  <div>
    {{ Form::label('password','Password:') }}
    {{ Form::password('password',['class'=>'form-control']) }}
-   {{ $errors->first('errors','<span class=error>:message</span>') }}
+   {{ $errors->first('errors','<span class=text-danger>:message</span>') }}
  </div>
  <div>
    {{ Form::submit('Login',['class'=>'btn btn-primary']) }}

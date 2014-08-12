@@ -7,19 +7,19 @@
 		<div class="form-group">
 		{{ Form::label('name','Username: ') }}
 		{{ Form::text('name',$user->name,['class'=>'form-control']) }}
-		{{ $errors->first('name','<span class=error>:message</span>') }}
+		{{ $errors->first('name','<span class=text-danger>:message</span>') }}
 		</div>
 
 		<div class="form-group">
 		{{ Form::label('twitter_user','Twitter username: ') }}
 		{{ Form::text('twitter_user',$user->twitter_user,['size'=>20,'class'=>'form-control']) }}
-		{{ $errors->first('twitter_user','<span class=error>:message</span>') }}
+		{{ $errors->first('twitter_user','<span class=text-danger>:message</span>') }}
 		</div>
 
 		<div class="form-group">
 		{{ Form::label('email','Email Address: ') }}
 		{{ Form::text('email',$user->email,['class'=>'form-control','disabled'=>'disabled']) }}
-		{{ $errors->first('email','<span class=error>:message</span>') }}
+		{{ $errors->first('email','<span class=text-danger>:message</span>') }}
 		</div>
 
 		<div class="form-group">

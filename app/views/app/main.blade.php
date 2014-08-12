@@ -16,7 +16,7 @@
 				{{ Form::label('followfile','Upload a file of Twitter User to follow  ') }}
 				{{ Form::file('followfile',['class'=>'form-control']) }}
 				{{ Form::submit('Upload file',['class'=>'btn btn-primary']) }}
-				{{ $errors->first('followfile','<span class=error>:message</span>') }}
+				{{ $errors->first('followfile','<span class=text-danger>:message</span>') }}
 				</div>
 			{{ Form::close() }}
 		<p>
