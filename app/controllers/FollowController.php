@@ -93,10 +93,13 @@ class FollowController extends \BaseController {
 		$follows = $this->follow->addFromFile($file);
 		//Don't automatically start the follow process. 
 		//$follows = $this->follow->followFromFollow(NULL, $friends, $toa);
+		//$job =Queue::push('FollowService', array('toa' => $toa, 'friends'=> $friends));
+		$job =Queue::push('FollowService', []);
 
 
 		//What should this actually return?
-		return $follows;
+		//return $follows;
+		return $job;
 
 
 	}
