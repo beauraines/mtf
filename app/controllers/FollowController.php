@@ -82,6 +82,7 @@ class FollowController extends \BaseController {
 
 		$file = Input::file('followfile');
 
+		/*
 		$toa = new TwitterOAuth(Auth::user()->consumer_key,
 					Auth::user()->consumer_secret,
 					Auth::user()->access_token,
@@ -89,17 +90,20 @@ class FollowController extends \BaseController {
 
 		$friends = $toa->get('friends/ids', array('cursor' => -1));
 
+		*/
+
 		//$follows = $this->follow->followFromFile($file, $friends, $toa);
 		$follows = $this->follow->addFromFile($file);
 		//Don't automatically start the follow process. 
 		//$follows = $this->follow->followFromFollow(NULL, $friends, $toa);
 		//$job =Queue::push('FollowService', array('toa' => $toa, 'friends'=> $friends));
-		$job =Queue::push('FollowService', []);
+		$job =Queue::push('FollowService', ['user_id' => Auth::user()->id]);
 
 
 		//What should this actually return?
 		//return $follows;
-		return $job;
+		//return $job;
+		return View::make('app.main',['status' => Follow::status(Auth::user()->id)]);
 
 
 	}

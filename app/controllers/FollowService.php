@@ -4,6 +4,8 @@ class FollowService {
 
     public function fire($job, $data)
     {
+
+    		Auth::loginUsingId($data['user_id']);
                 
 		$toa = new TwitterOAuth(Auth::user()->consumer_key,
                                         Auth::user()->consumer_secret,
@@ -15,6 +17,10 @@ class FollowService {
 
                 $follows = new Follow;
                 $follows = $follows->followFromFollow(NULL, $friends, $toa);
+
+		$job->delete();
+
+
 
     }
 
