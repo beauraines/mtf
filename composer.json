@@ -8,7 +8,7 @@
 		"maatwebsite/excel": "1.*" ,
 		"kertz/twitteroauth": "dev-master",
 		"doctrine/dbal": "~2.3",
-		"pda/pheanstalk": "dev-master"
+		"pda/pheanstalk": "2.0.*"
 	},
 	"autoload": {
 		"classmap": [
