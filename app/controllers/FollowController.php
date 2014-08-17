@@ -105,6 +105,7 @@ class FollowController extends \BaseController {
 		//return $job;
 		return View::make('app.main',['status' => Follow::status(Auth::user()->id),
 					      'job_id' => $job, 
+				      	      'tokens_set' => User::tokensSet()
 					     ]);
 
 

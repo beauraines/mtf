@@ -4,7 +4,7 @@
 
 
 @if ( isset($job_id) ) 
-<div class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>Processing uploaded list. Job {{$job_id}}successfully started.</div> 
+<div class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>Processing uploaded list. Job {{$job_id}} successfully started.</div> 
 @endif
 
 

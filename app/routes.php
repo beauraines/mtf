@@ -62,16 +62,11 @@ $tweets = twitterFeed();
 
 
 Route::get('/followfromfollow', function() {
-                $toa = new TwitterOAuth(Auth::user()->consumer_key,
-                                        Auth::user()->consumer_secret,
-                                        Auth::user()->access_token,
-                                        Auth::user()->access_token_secret);
-
-                $friends = $toa->get('friends/ids', array('cursor' => -1));
-
-                $follows = new Follow;
-		$follows = $follows->followFromFollow(NULL, $friends, $toa);
-		return $follows;
+                $job =Queue::push('FollowService', ['user_id' => Auth::user()->id]);
+                return View::make('app.main',['status' => Follow::status(Auth::user()->id),
+                                              'job_id' => $job,
+				              'tokens_set' => User::tokensSet()
+                                             ]);
 })->before('auth');
 
 Route::get('/whoami', function()
