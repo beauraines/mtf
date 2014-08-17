@@ -14,7 +14,10 @@
 
 		<div>
 		{{ Form::label('twitter_user','Twitter username (without the @):  ') }}
+                  <div class="input-group">
+                  <div class="input-group-addon">@</div>
 		{{ Form::text('twitter_user','twittername') }}
+		  </div>
 		{{ $errors->first('twitter_user','<span class=text-danger>:message</span>') }}
 		</div>
 

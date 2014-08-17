@@ -103,7 +103,10 @@ class FollowController extends \BaseController {
 		//What should this actually return?
 		//return $follows;
 		//return $job;
-		return View::make('app.main',['status' => Follow::status(Auth::user()->id)]);
+		return View::make('app.main',['status' => Follow::status(Auth::user()->id),
+					      'job_id' => $job, 
+					     ]);
+
 
 
 	}

@@ -29,7 +29,9 @@ Route::group(array('before'=>'auth'), function() {
 
 Route::get('u', function()
 {
-	return View::make('app.main',['status' => Follow::status(Auth::user()->id)]);
+	return View::make('app.main',['status' => Follow::status(Auth::user()->id),
+				      'tokens_set' => User::tokensSet()
+				     ]);
 });
 
    Route::get('/getfollowerdata','FollowController@getData');

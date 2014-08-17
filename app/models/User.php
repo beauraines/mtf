@@ -63,5 +63,15 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         return false;
         }
 
+	static function tokensSet()
+	{
+	  if ( ! isset(Auth::user()->consumer_key) ) { return false; }
+	  if ( ! isset(Auth::user()->consumer_secret) ) { return false; }
+	  if ( ! isset(Auth::user()->access_token) )  { return false; }
+	  if ( ! isset(Auth::user()->access_token_secret) ) { return false; }
+
+	  return true;
+	}
+
 
 }
