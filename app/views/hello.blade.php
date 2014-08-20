@@ -2,36 +2,32 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
+
+<!-- Bootstrap -->
+
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
 	<title>Manage Twitter Followers</title>
-	<style>
-		@import url(//fonts.googleapis.com/css?family=Lato:700);
+</head>
+<body>
 
-		body {
-			margin:0;
-			font-family:'Lato', sans-serif;
-			text-align:center;
-			color: #999;
-			background-color: aliceblue;
-		}
+<style>
+.jumbotron {
+  text-align: center;
+  border-bottom: 1px solid #e5e5e5;
+}
 
-		.welcome {
-			width: 300px;
-			height: 200px;
-			position: absolute;
-			left: 50%;
-			top: 50%;
-			margin-left: -150px;
-			margin-top: -200px;
-		}
+.col-sm-6{
+  text-align: center;
+}
 
-		a, a:visited {
-			text-decoration:none;
-		}
-
-		h1 {
-			font-size: 32px;
-			margin: 16px 0 0 0;
-		}
 #navigation {
         height: 50px;
         /*width: 280px;
@@ -39,10 +35,9 @@
         margin-left: 16px;
         float: right;
         color: #666666;
-        font-size: 15px;
+       font-size: 15px;
         list-style-type:none;
         padding: 0px;
-
 }
 
 #navigation li {
@@ -50,39 +45,43 @@
         padding: 7px;
 }
 
-#navigation a {
-        font-weight: bold;
-}
+</style>
 
-#navigation a:link,
-#navigation a:visited {
 
-        color:#666666;
-        text-decoration: none;
-}
 
-#navigation a:hover {
-
-        color:#666666;
-        text-decoration:underline;
-}
-
-		
-	</style>
-</head>
-<body>
-<div>
+<div class="container">
 	  <ul id="navigation">
            <li>{{ link_to_route('sessions.create','Login');}}</li>
            <li>{{ link_to_route('users.create','Sign up');}}</li>
 	  </ul>
 </div>
 
+    <div class="container">
+	<div class="jumbotron">
+		<h2 >Manage Twitter Followers</h2>
+	<img src="http://openclipart.org/people/jaschon/bluebird.svg" width=250/>
+	</div>
 
-	<div class="welcome">
-		<h1>Manage Twitter Followers</h1>
-	<a href="http://openclipart.org/detail/69181/bluebird-by-jaschon"><img src="http://openclipart.org/people/jaschon/bluebird.svg" /></a>
+	<div class="col-sm-6">
+<strong>Features</strong><br>
+<ul>
+  <li>Follow Twitter users from a list
+  <li>Respects twitters daily maximums
+  <li>Picks up where it left off if your list is longer than the daily maximum.
+</ul>
 
 	</div>
+	<div class="col-sm-6">
+<strong>Coming Soon!</strong><br>
+<ul>
+  <li>Scheduled Tweets
+  <li>Search twitter users
+  <li>Integration with Instagram (which means a whole new name)
+</ul>
+	</div>
+
+
+
+     </div>
 </body>
 </html>
