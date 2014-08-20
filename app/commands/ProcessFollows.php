@@ -3,7 +3,6 @@
 use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
-use App\Models\Follow;
 
 class ProcessFollows extends Command {
 
@@ -27,10 +26,10 @@ class ProcessFollows extends Command {
 	 * @return void
 	 */
 
-	public function __construct(Follow $follow)
+	public function __construct()
 	{
 		parent::__construct();
-		$this->follow = $follow;
+		//$this->follow = App::make('Follow');
 	}
 
 
@@ -41,9 +40,14 @@ class ProcessFollows extends Command {
 	 */
 	public function fire()
 	{
-		$user_ids = Follow::where('status_code',108)->get();
+		$user_ids = Follow::where('status_code',108)->distinct()->get(['user_id']);
 
-		$this->info($user_ids);
+		foreach ( $user_ids as $user) {
+
+		  $this->info($user['user_id']);
+		  // submit the job to the queue for $user'user_id']
+
+		}
 		
 	}
 
