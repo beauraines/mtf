@@ -40,6 +40,8 @@ class ProcessFollows extends Command {
 	 */
 	public function fire()
 	{
+		 $dt = new DateTime();
+		  $this->info('Checking for follows to add to the queue ' . $dt->format('Y-m-d H:i:s'));
 		$user_ids = Follow::where('status_code','<>',1)  // Successful follow
                                     ->where('status_code','<>',0)  // Already follow
                                     ->where('status_code','<>',160) // Already requested to follow
@@ -50,13 +52,12 @@ class ProcessFollows extends Command {
 				    ->distinct()->get(['user_id']);
 
 		foreach ( $user_ids as $user) {
-
 		  // submit the job to the queue for $user'user_id']
-                $job =Queue::push('FollowService', ['user_id' => $user['user_id']]);
-		  $this->info('Started job ' . $job . ' for user ' .$user['user_id']);
-
-
+                  $job =Queue::push('FollowService', ['user_id' => $user['user_id']]);
+		  $this->info('    Started job ' . $job . ' for user ' .$user['user_id']);
 		}
+		 $dt = new DateTime();
+		 $this->info('Finished adding jobs to the queue ' . $dt->format('Y-m-d H:i:s'));
 		
 	}
 
