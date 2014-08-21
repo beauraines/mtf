@@ -8,7 +8,7 @@
 @endif
 
 
-@if ( ! $tokens_set ) 
+@if ( Auth::user()->tokensSet() ) 
 <div class="alert alert-danger" role="alert">Twitter Access Tokens have not been set. Please update your  {{ link_to_route('users.edit','settings', [ Auth::user()->id ],["class"=>"alert-link"]); }}.</div> 
 @endif
 
@@ -73,12 +73,16 @@
 			<td>Count</td>
 		</tr>
 		</thead>
+		@if (isset($status)) 
 		@foreach ( $status as $status=>$value )
 		<tr>
 			<td>{{ $status }}</td>
 			<td> {{$value}} </td>
 		</tr>
-		@endforeach
+		@endforeach 
+		@else
+		<tr><td>No data found</td></tr>
+		@endif
 		</table>
 	</div>
 

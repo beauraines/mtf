@@ -57,9 +57,23 @@ class UsersController extends \BaseController {
 		$this->user->__unset('password_confirmation');
 		$this->user->save();
 
+		// Send notification to admin of new sign up
+		
+		$name = $this->user->name;
+		$email = $this->user->email;
+		$twitter_user = $this->user->twitter_user;
+		$data = ['name' => $this->user->name, 'email' => $this->user->email, 'twitter_user' => $this->user->twitter_user];
+		
+		Mail::queue('emails.welcome', $data, function($message) use ($name, $email, $twitter_user)
+		{
+    		  $message->to('beau.raines@gmail.com', 'Beau Raines')->subject('New user sign up!');
+		});
+
           if (Auth::attempt(Input::only('email','password')))
           {
-             return Redirect::intended('/u');
+		return View::make('app.main',[
+				      	      'tokens_set' => User::tokensSet()
+					     ]);
           }
           return Redirect::back()->withInput();
 
