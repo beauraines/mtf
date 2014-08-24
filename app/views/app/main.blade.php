@@ -8,7 +8,7 @@
 @endif
 
 
-@if ( Auth::user()->tokensSet() ) 
+@if ( ! Auth::user()->tokensSet() ) 
 <div class="alert alert-danger" role="alert">Twitter Access Tokens have not been set. Please update your  {{ link_to_route('users.edit','settings', [ Auth::user()->id ],["class"=>"alert-link"]); }}.</div> 
 @endif
 
